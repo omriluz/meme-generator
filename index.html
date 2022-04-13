@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+
+<body onload="onInit()">
+    <header>
+        <nav>
+            <img src="images/LOGO.png" alt="" class="logo">
+            <div class="menu">
+                <li><a class="gallery-btn" href="#">Gallery</a></li>
+                <li><a class="about-btn" href="#">About</a></li>
+            </div>
+        </nav>
+    </header>
+
+
+    <div hidden class="gallery-view-container">
+        <input type="text" placeholder="Search..">
+        <div class="gallery-container">
+
+        </div>
+    </div>
+
+
+    <div class="meme-container">
+
+        <canvas class="meme-canvas" width="340" height="390"></canvas>
+
+    </div>
+
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
