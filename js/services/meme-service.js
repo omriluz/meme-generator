@@ -1,15 +1,8 @@
 'use strict'
 
 let gMeme;
-
+let gPhotos = {}
 
 function getMeme() {
     return gMeme
 }
-
-
-// function createMeme(img) {
-//     gMeme = {
-//         img
-//     }
-// }
