@@ -23,9 +23,14 @@ function renderMeme() {
     let img = new Image();
     img.addEventListener("load", function() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        renderText(firstText, gElCanvas.width / 2, gElCanvas.height / 8)
-        renderText(secondText, gElCanvas.width / 2, gElCanvas.height / 1.05)
 
+        renderText(firstText, gElCanvas.width / 2,
+            gElCanvas.height / 8, meme.lines[0].color,
+            meme.lines[0].size)
+
+        renderText(secondText, gElCanvas.width / 2,
+            gElCanvas.height / 1.05, meme.lines[1].color,
+            meme.lines[1].size)
     })
     img.src = memeImage;
 
@@ -36,6 +41,7 @@ function onSwitchLine() {
     let meme = getMeme()
     switchLine()
     document.querySelector('.user-text-box').value = meme.lines[meme.selectedLineIdx].txt
+    document.querySelector('.text-color').value = meme.lines[meme.selectedLineIdx].color
 }
 
 function onNewText(text) {
@@ -48,12 +54,22 @@ function onAddLine() {
 }
 
 
-function renderText(txt, x, y) {
+function renderText(txt, x, y, color, size) {
     gCtx.textAlign = 'center';
     gCtx.lineWidth = 2;
-    gCtx.fillStyle = 'white';
-    gCtx.font = '50px Impact';
+    gCtx.fillStyle = color
+    gCtx.font = `${size}px Impact`;
     gCtx.fillText(txt, x, y);
     gCtx.strokeStyle = 'black';
     gCtx.strokeText(txt, x, y);
+}
+
+function onColorChange(color) {
+    changeTextColor(color)
+    renderMeme()
+}
+
+function onHandleFontSize(val) {
+    handleFontSize(val)
+    renderMeme()
 }

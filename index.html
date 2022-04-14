@@ -34,23 +34,23 @@
             <div class="user-controls">
                 <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">
-                    <button onclick="onSwitchLine()" class="controlls-btn switch-lines-btn">sw</button>
-                    <button class="controlls-btn add-line-btn">ad</button>
-                    <button class="controlls-btn delete-btn">del</button>
+                    <button onclick="onSwitchLine()" class="controls-btn switch-lines-btn">sw</button>
+                    <button class="controls-btn add-line-btn">ad</button>
+                    <button class="controls-btn delete-btn">del</button>
                 </div>
                 <div class="text-styling">
-                    <button onclick="onHandleFontSize(1)" class="controlls-btn font-bigger">A+</button>
-                    <button onclick="onHandleFontSize(-1)" class="controlls-btn font-smaller">A-</button>
-                    <button onclick="onAlignText('left')" class="controlls-btn text-align-left">lef</button>
-                    <button onclick="onAlignText('center')" class="controlls-btn text-align-center">cen</button>
-                    <button onclick="onAlignText('right')" class="controlls-btn text-align-right">rig</button>
+                    <button onclick="onHandleFontSize(1)" class="controls-btn font-bigger">A+</button>
+                    <button onclick="onHandleFontSize(-1)" class="controls-btn font-smaller">A-</button>
+                    <button onclick="onAlignText('left')" class="controls-btn text-align-left">lef</button>
+                    <button onclick="onAlignText('center')" class="controls-btn text-align-center">cen</button>
+                    <button onclick="onAlignText('right')" class="controls-btn text-align-right">rig</button>
                     <select name="font-type" id="">
                         <option value="impact">impact</option>
                         <option value="ariel">ariel</option>
                         <option value="roboto">roboto</option>
                     </select>
-                    <button onclick="underLine()" class="controlls-btn underline">und</button>
-                    <button onclick="onColorChange()" class="controlls-btn text-color">col</button>
+                    <button onclick="underLine()" class="controls-btn underline">und</button>
+                    <input type="color" value="#ffffff" onchange="onColorChange(this.value)" class="controls-btn text-color">
                 </div>
             </div>
         </div>

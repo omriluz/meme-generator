@@ -10,6 +10,7 @@ function renderGallery(el) {
     if (el) {
         document.querySelector('.image-gallery').style.display = 'block';
         document.querySelector('.meme-editor').style.display = 'none'
+        document.querySelector('body').style.backgroundColor = '#383b42'
     }
 
     // take photos from folder and present them in the client
@@ -28,8 +29,6 @@ function onImgSelect(id) {
     let galleryViewEl = document.querySelector('.image-gallery')
     galleryViewEl.style.display = 'none'
 
-    saveMeme(id)
+    setImg(id)
     initMemeEditor()
-
-
 }

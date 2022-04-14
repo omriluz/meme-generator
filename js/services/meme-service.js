@@ -6,15 +6,15 @@ let gMeme = {
     selectedLineIdx: 0,
     lines: [{
             txt: 'insert txt here',
-            size: 21,
+            size: 50,
             align: 'left',
-            color: 'red'
+            color: '#ffffff'
         },
         {
             txt: 'insert kaki here',
-            size: 20,
+            size: 50,
             align: 'left',
-            color: 'red'
+            color: '#ffffff'
         }
     ]
 };
@@ -30,7 +30,7 @@ function getSelectedMemeImg() {
 }
 
 
-function saveMeme(memeId) {
+function setImg(memeId) {
     let photo = gPhotos.find(photo => photo.id === +memeId)
     gMeme.selectedImgId = +memeId
         // saving right now curr image to local storage not sure if i need to yet
@@ -49,4 +49,13 @@ function switchLine() {
 
 function setLineTxt(text) {
     gMeme.lines[gMeme.selectedLineIdx].txt = text
+}
+
+function changeTextColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
+function handleFontSize(val) {
+    gMeme.lines[gMeme.selectedLineIdx].size += val
+    console.log(gMeme.lines[gMeme.selectedLineIdx].size);
 }

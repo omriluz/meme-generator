@@ -127,9 +127,9 @@ nav {
     gap: 1%;
 }
 
-.controlls-btn {
+.controls-btn {
     border-radius: 10px;
-    filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
+    filter: drop-shadow(0.262px 4.993px 0px rgba(29, 28, 28, 0.55));
     background-color: white;
     width: 40px;
     font-family: poppins-semi-bold;
