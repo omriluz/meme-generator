@@ -5,7 +5,13 @@ function onInit() {
     renderGallery()
 }
 
-function renderGallery() {
+function renderGallery(el) {
+    // if pressed via button and not onInit go back to gallery
+    if (el) {
+        document.querySelector('.image-gallery').style.display = 'block';
+        document.querySelector('.meme-editor').style.display = 'none'
+    }
+
     // take photos from folder and present them in the client
     let galleryEl = document.querySelector('.gallery-container')
     let photos = getPhotos()

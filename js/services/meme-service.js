@@ -4,9 +4,25 @@
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: []
+    lines: [{
+            txt: 'insert text here',
+            size: 20,
+            align: 'left',
+            color: 'red'
+        },
+        {
+            txt: 'insert text here',
+            size: 20,
+            align: 'left',
+            color: 'red'
+        }
+    ]
 };
 
+
+function getMeme() {
+    return gMeme
+}
 
 function getSelectedMemeImg() {
     let photo = gPhotos.find(photo => photo.id === gMeme.selectedImgId)

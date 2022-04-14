@@ -12,9 +12,9 @@
 <body onload="onInit()">
     <header>
         <nav>
-            <img src="images/LOGO.png" alt="" class="logo">
+            <img onclick="renderGallery(this)" src="images/LOGO.png" alt="" class="logo">
             <div class="menu">
-                <li><a onclick="renderGallery()" class="gallery-btn" href="#">Gallery</a></li>
+                <li><a onclick="renderGallery(this)" class="gallery-btn" href="#">Gallery</a></li>
                 <li><a class="about-btn" href="#">About</a></li>
             </div>
         </nav>
@@ -32,7 +32,7 @@
         <div class="editor-container">
             <canvas class="meme-canvas" width="340" height="390"></canvas>
             <div class="user-controls">
-                <input type="text" class="user-text-box" placeholder="insert text here" onchange="onText()">
+                <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">
                     <button class="controlls-btn switch-lines-btn">sw</button>
                     <button class="controlls-btn add-line-btn">ad</button>

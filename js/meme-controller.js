@@ -19,21 +19,25 @@ function addEventListeners() {
 
 function renderMeme() {
     let memeImage = getSelectedMemeImg()
-    let exampleText = 'insert text here'
-
+    let meme = getMeme()
+        // let exampleText = 'insert text here'
 
     let img = new Image();
     img.addEventListener("load", function() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        renderText(exampleText, gElCanvas.width / 2, gElCanvas.height / 8)
-        renderText(exampleText, gElCanvas.width / 2, gElCanvas.height / 1.05)
+        renderText(meme.lines[meme.selectedLineIdx].txt, gElCanvas.width / 2, gElCanvas.height / 8)
+        renderText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 1.05)
     })
     img.src = memeImage;
 
 }
 
 
-
+function onNewText(text) {
+    let meme = getMeme()
+    meme.lines[meme.selectedLineIdx].txt = text
+    renderMeme()
+}
 
 function renderText(txt, x, y) {
     gCtx.textAlign = 'center';
