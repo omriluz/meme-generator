@@ -14,31 +14,32 @@
         <nav>
             <img src="images/LOGO.png" alt="" class="logo">
             <div class="menu">
-                <li><a class="gallery-btn" href="#">Gallery</a></li>
+                <li><a onclick="renderGallery()" class="gallery-btn" href="#">Gallery</a></li>
                 <li><a class="about-btn" href="#">About</a></li>
             </div>
         </nav>
     </header>
 
 
-    <div class="gallery-view-container">
+    <div class="image-gallery">
         <input type="text" placeholder="Search..">
         <div class="gallery-container">
         </div>
     </div>
 
 
-    <div hidden class="meme-container">
+    <div hidden class="meme-editor">
 
         <canvas class="meme-canvas" width="340" height="390"></canvas>
 
     </div>
 
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>

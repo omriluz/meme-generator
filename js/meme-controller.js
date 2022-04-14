@@ -4,11 +4,12 @@
 let gElCanvas = document.querySelector('canvas')
 let gCtx = gElCanvas.getContext('2d')
 
-renderMeme()
 
 function renderMeme() {
     let meme = getMeme()
-        // console.log('meme', meme);
+    console.log('meme', meme);
+    document.querySelector('.meme-editor').style.display = 'block'
+        // let meme = getMeme()
     let exampleText = 'insert text here'
 
     // takes meme chosen and displays on controller

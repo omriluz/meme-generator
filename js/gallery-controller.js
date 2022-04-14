@@ -6,6 +6,7 @@ function onInit() {
 }
 
 function renderGallery() {
+    console.log('fdjasifjds');
     // take photos from folder and present them in the client
     let galleryEl = document.querySelector('.gallery-container')
     let photos = getPhotos()
@@ -19,7 +20,12 @@ function renderGallery() {
 }
 
 function imgClicked(img) {
-    let galleryEl = document.querySelector('.gallery-container')
-    galleryEl.style.display = 'none'
-    return img
+    let galleryViewEl = document.querySelector('.image-gallery')
+    galleryViewEl.style.display = 'none'
+
+    // todo: check if you need to save the image first
+    // or if you can pass data between controllers
+    // right now for the sake of continuing pass through controllers
+    saveImage(img)
+        // renderMeme(img)
 }
