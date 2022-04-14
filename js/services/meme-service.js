@@ -39,13 +39,6 @@ function getSelectedMemeImg() {
 function setImg(memeId) {
     let photo = gPhotos.find(photo => photo.id === +memeId)
     gMeme.selectedImgId = +memeId
-        // saving right now curr image to local storage not sure if i need to yet
-    _saveChosenMemeToStorage(photo.img)
-}
-
-
-function _saveChosenMemeToStorage(val) {
-    saveToStorage("chosenMeme", val)
 }
 
 function switchLine() {
@@ -71,6 +64,12 @@ function changeFont(val) {
 
 function changeAlignment(val) {
     gMeme.textAlignment = val
+}
+
+function deleteText() {
+    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
+    gMeme.lines[gMeme.selectedLineIdx].txt = ''
+    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
 }
 
 function deleteLine() {

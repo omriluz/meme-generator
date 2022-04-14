@@ -85,8 +85,9 @@ function onAlignText(val) {
 }
 
 function onDeleteLine() {
+    deleteText()
+    renderMeme()
     deleteLine()
-    renderMeme
 }
 
 function onAddLine() {
@@ -98,8 +99,3 @@ function onDrag(val) {
     dragText(val)
     renderMeme()
 }
-
-// function resizeCanvas() {
-//     let elContainer = document.querySelector('.canvas-container')
-//     gElCanvas.width = elContainer.offsetWidth - 100
-// }
