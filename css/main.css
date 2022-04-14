@@ -48,15 +48,19 @@ nav {
 
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1%;
     height: 80vh;
 }
 
+.gallery-container:nth-child(even) {
+    margin-left: 30px;
+}
+
 .gallery-img {
     border: 1px solid white;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .gallery-img:hover {
@@ -82,6 +86,8 @@ nav {
 .editor-container {
     height: 80vh;
     display: flex;
+    background-color: red;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10%;
@@ -139,11 +145,18 @@ nav {
 
 @media screen and (min-width:500px) {
     .gallery-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(197px, 1fr));
     }
     .gallery-img {
         border: 1px solid white;
         width: 200px;
         height: 200px;
+    }
+    .editor-container {
+        background-color: blue;
+        flex-direction: row;
+    }
+    .gallery-container:nth-child(even) {
+        margin-left: unset;
     }
 }
