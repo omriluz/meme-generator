@@ -5,13 +5,13 @@ let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [{
-            txt: 'insert text here',
-            size: 20,
+            txt: 'insert txt here',
+            size: 21,
             align: 'left',
             color: 'red'
         },
         {
-            txt: 'insert text here',
+            txt: 'insert kaki here',
             size: 20,
             align: 'left',
             color: 'red'
@@ -40,4 +40,13 @@ function saveMeme(memeId) {
 
 function _saveChosenMemeToStorage(val) {
     saveToStorage("chosenMeme", val)
+}
+
+function switchLine() {
+    gMeme.selectedLineIdx + 1 >= gMeme.lines.length ?
+        gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
+}
+
+function setLineTxt(text) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = text
 }

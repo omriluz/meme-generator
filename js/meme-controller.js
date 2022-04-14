@@ -1,43 +1,52 @@
 'use strict'
 
-// get canvas
 let gElCanvas = document.querySelector('canvas')
 let gCtx = gElCanvas.getContext('2d')
 
+let firstText;
+let secondText;
 
 function initMemeEditor() {
     document.querySelector('body').style.backgroundColor = '#21252b'
-        // addEventListeners()
     document.querySelector('.meme-editor').style.display = 'block'
     renderMeme()
 }
 
-function addEventListeners() {
-
-    // add event listeners here
-}
 
 function renderMeme() {
     let memeImage = getSelectedMemeImg()
     let meme = getMeme()
+    firstText = meme.lines[0].txt
+    secondText = meme.lines[1].txt
         // let exampleText = 'insert text here'
 
     let img = new Image();
     img.addEventListener("load", function() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        renderText(meme.lines[meme.selectedLineIdx].txt, gElCanvas.width / 2, gElCanvas.height / 8)
-        renderText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 1.05)
+        renderText(firstText, gElCanvas.width / 2, gElCanvas.height / 8)
+        renderText(secondText, gElCanvas.width / 2, gElCanvas.height / 1.05)
+
     })
     img.src = memeImage;
 
 }
 
 
-function onNewText(text) {
+function onSwitchLine() {
     let meme = getMeme()
-    meme.lines[meme.selectedLineIdx].txt = text
+    switchLine()
+    document.querySelector('.user-text-box').value = meme.lines[meme.selectedLineIdx].txt
+}
+
+function onNewText(text) {
+    setLineTxt(text)
     renderMeme()
 }
+
+function onAddLine() {
+
+}
+
 
 function renderText(txt, x, y) {
     gCtx.textAlign = 'center';

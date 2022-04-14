@@ -48,7 +48,7 @@ nav {
 
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     /* background-color: wheat; */
     height: 80vh;
 }
@@ -116,7 +116,6 @@ nav {
     border-radius: 28px;
     background-color: #ebeef3;
     box-shadow: 0px 4px rgb(187, 183, 183);
-    caret-color: transparent;
 }
 
 .text-styling {
@@ -136,4 +135,10 @@ nav {
     font-family: poppins-semi-bold;
     font-size: 20px;
     aspect-ratio: 1;
+}
+
+@media screen and (min-width:500px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }

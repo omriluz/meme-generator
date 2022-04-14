@@ -18,13 +18,13 @@ function renderGallery(el) {
     let strsHTML = ''
 
     photos.map(photo => {
-        strsHTML += `<img id=${photo.id} onclick="imgClicked(this.id)" class="gallery-img" src="${photo.img}">`
+        strsHTML += `<img id=${photo.id} onclick="onImgSelect(this.id)" class="gallery-img" src="${photo.img}">`
     })
 
     galleryEl.innerHTML = strsHTML
 }
 
-function imgClicked(id) {
+function onImgSelect(id) {
     let galleryViewEl = document.querySelector('.image-gallery')
     galleryViewEl.style.display = 'none'
 
