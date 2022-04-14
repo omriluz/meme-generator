@@ -10,13 +10,17 @@ let gMeme = {
             txt: 'insert text here',
             size: 50,
             align: 'left',
-            color: '#ffffff'
+            color: '#ffffff',
+            width: 170,
+            height: 70
         },
         {
             txt: 'insert text here',
             size: 50,
             align: 'left',
-            color: '#ffffff'
+            color: '#ffffff',
+            width: 170,
+            height: 370
         }
     ]
 };
@@ -78,6 +82,12 @@ function addLine() {
         txt: 'insert text here',
         size: 50,
         align: 'left',
-        color: '#ffffff'
+        color: '#ffffff',
+        width: 170,
+        height: 220
     })
+}
+
+function dragText(val) {
+    gMeme.lines[gMeme.selectedLineIdx].height += val
 }

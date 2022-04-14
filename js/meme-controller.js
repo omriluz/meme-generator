@@ -7,7 +7,6 @@ let firstText;
 let secondText;
 let meme = getMeme()
 
-
 function initMemeEditor() {
     // resizeCanvas()
     document.querySelector('body').style.backgroundColor = '#21252b'
@@ -20,22 +19,22 @@ function renderMeme() {
     let memeImage = getSelectedMemeImg()
     firstText = meme.lines[0].txt
     secondText = meme.lines[1].txt
-        // let exampleText = 'insert text here'
+    renderText(firstText, gElCanvas.width / 2,
+        gElCanvas.height / 8, meme.lines[0].color,
+        meme.lines[0].size)
+
+    renderText(secondText, gElCanvas.width / 2,
+        gElCanvas.height / 1.05, meme.lines[1].color,
+        meme.lines[1].size)
 
     let img = new Image();
     img.src = memeImage;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-
-        renderText(firstText, gElCanvas.width / 2.1,
-            gElCanvas.height / 8, meme.lines[0].color,
-            meme.lines[0].size)
-
-        renderText(secondText, gElCanvas.width / 1.9,
-            gElCanvas.height / 1.05, meme.lines[1].color,
-            meme.lines[1].size)
+        meme.lines.forEach(line => {
+            renderText(line.txt, line.width, line.height, line.color, line.size)
+        })
     }
-
 }
 
 
@@ -90,12 +89,15 @@ function onDeleteLine() {
     renderMeme
 }
 
-// function onAddLine() {
-//     addLine()
-//     renderMeme()
-// }
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
 
-
+function onDrag(val) {
+    dragText(val)
+    renderMeme()
+}
 
 // function resizeCanvas() {
 //     let elContainer = document.querySelector('.canvas-container')
