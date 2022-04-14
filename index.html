@@ -29,9 +29,31 @@
 
 
     <section hidden class="meme-editor">
-
-        <canvas class="meme-canvas" width="340" height="390"></canvas>
-
+        <div class="editor-container">
+            <canvas class="meme-canvas" width="340" height="390"></canvas>
+            <div class="user-controls">
+                <input type="text" class="user-text-box" placeholder="insert text here" onchange="onText()">
+                <div class="button-container">
+                    <button class="controlls-btn switch-lines-btn">sw</button>
+                    <button class="controlls-btn add-line-btn">ad</button>
+                    <button class="controlls-btn delete-btn">del</button>
+                </div>
+                <div class="text-styling">
+                    <button onclick="onHandleFontSize(1)" class="controlls-btn font-bigger">A+</button>
+                    <button onclick="onHandleFontSize(-1)" class="controlls-btn font-smaller">A-</button>
+                    <button onclick="onAlignText('left')" class="controlls-btn text-align-left">lef</button>
+                    <button onclick="onAlignText('center')" class="controlls-btn text-align-center">cen</button>
+                    <button onclick="onAlignText('right')" class="controlls-btn text-align-right">rig</button>
+                    <select name="font-type" id="">
+                        <option value="impact">impact</option>
+                        <option value="ariel">ariel</option>
+                        <option value="roboto">roboto</option>
+                    </select>
+                    <button onclick="underLine()" class="controlls-btn underline">und</button>
+                    <button onclick="onColorChange()" class="controlls-btn text-color">col</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script src="js/services/storage.service.js"></script>

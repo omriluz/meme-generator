@@ -22,6 +22,8 @@ function imgClicked(id) {
     let galleryViewEl = document.querySelector('.image-gallery')
     galleryViewEl.style.display = 'none'
 
-
     saveMeme(id)
+    initMemeEditor()
+
+
 }

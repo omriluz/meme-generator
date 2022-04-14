@@ -3,6 +3,11 @@
     src: url(../fonts/Poppins-Medium.ttf);
 }
 
+@font-face {
+    font-family: poppins-semi-bold;
+    src: url(../fonts/Poppins-SemiBold.ttf)
+}
+
 body {
     background-color: #383b42;
 }
@@ -73,10 +78,61 @@ nav {
     position: relative;
 }
 
+.editor-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
 .meme-canvas {
-    position: absolute;
-    margin-left: 20%;
-    margin-top: 4%;
-    border-radius: 16px;
+    border-radius: 25px;
     background-color: white;
+}
+
+.user-controls {
+    width: 340px;
+    height: 390px;
+    border-radius: 30px;
+    background-color: #383b42;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+}
+
+.user-text-box {
+    all: unset;
+    outline: none;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 30px;
+    width: 80%;
+    height: 56px;
+    border-radius: 28px;
+    background-color: #ebeef3;
+    box-shadow: 0px 4px rgb(187, 183, 183);
+    caret-color: transparent;
+}
+
+.text-styling {
+    width: 80%;
+    height: 30%;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1%;
+}
+
+.controlls-btn {
+    border-radius: 10px;
+    filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
+    background-color: white;
+    width: 40px;
+    font-family: poppins-semi-bold;
+    font-size: 20px;
+    aspect-ratio: 1;
 }
