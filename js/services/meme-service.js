@@ -4,14 +4,16 @@
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
+    textAlignment: 'center',
+    font: 'Impact',
     lines: [{
-            txt: 'insert txt here',
+            txt: 'insert text here',
             size: 50,
             align: 'left',
             color: '#ffffff'
         },
         {
-            txt: 'insert kaki here',
+            txt: 'insert text here',
             size: 50,
             align: 'left',
             color: '#ffffff'
@@ -57,5 +59,25 @@ function changeTextColor(color) {
 
 function handleFontSize(val) {
     gMeme.lines[gMeme.selectedLineIdx].size += val
-    console.log(gMeme.lines[gMeme.selectedLineIdx].size);
+}
+
+function changeFont(val) {
+    gMeme.font = val
+}
+
+function changeAlignment(val) {
+    gMeme.textAlignment = val
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+}
+
+function addLine() {
+    gMeme.lines.push({
+        txt: 'insert text here',
+        size: 50,
+        align: 'left',
+        color: '#ffffff'
+    })
 }

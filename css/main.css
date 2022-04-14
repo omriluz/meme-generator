@@ -60,7 +60,7 @@ nav {
 .gallery-img {
     border: 1px solid white;
     width: 150px;
-    height: 150px;
+    aspect-ratio: 1;
 }
 
 .gallery-img:hover {
@@ -86,7 +86,6 @@ nav {
 .editor-container {
     height: 80vh;
     display: flex;
-    background-color: red;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -96,6 +95,12 @@ nav {
 .meme-canvas {
     border-radius: 25px;
     background-color: white;
+    margin-top: 50vh;
+}
+
+.canvas-container {
+    /* width: 50 */
+    /* height: 50%; */
 }
 
 .user-controls {
@@ -129,7 +134,7 @@ nav {
     height: 30%;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     gap: 1%;
 }
 
@@ -153,10 +158,14 @@ nav {
         height: 200px;
     }
     .editor-container {
-        background-color: blue;
         flex-direction: row;
     }
     .gallery-container:nth-child(even) {
         margin-left: unset;
+    }
+    .meme-canvas {
+        border-radius: 25px;
+        background-color: white;
+        margin-top: unset;
     }
 }

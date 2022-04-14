@@ -30,13 +30,15 @@
 
     <section hidden class="meme-editor">
         <div class="editor-container">
-            <canvas class="meme-canvas" width="340" height="390"></canvas>
+            <div class="canvas-container">
+                <canvas class="meme-canvas" width="340" height="390"></canvas>
+            </div>
             <div class="user-controls">
                 <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">
                     <button onclick="onSwitchLine()" class="controls-btn switch-lines-btn">sw</button>
-                    <button class="controls-btn add-line-btn">ad</button>
-                    <button class="controls-btn delete-btn">del</button>
+                    <button onclick="onAddLine()" class="controls-btn add-line-btn">ad</button>
+                    <button onclick="onDeleteLine()" class="controls-btn delete-btn">del</button>
                 </div>
                 <div class="text-styling">
                     <button onclick="onHandleFontSize(1)" class="controls-btn font-bigger">A+</button>
@@ -44,10 +46,11 @@
                     <button onclick="onAlignText('left')" class="controls-btn text-align-left">lef</button>
                     <button onclick="onAlignText('center')" class="controls-btn text-align-center">cen</button>
                     <button onclick="onAlignText('right')" class="controls-btn text-align-right">rig</button>
-                    <select name="font-type" id="">
-                        <option value="impact">impact</option>
-                        <option value="ariel">ariel</option>
-                        <option value="roboto">roboto</option>
+                    <select onchange="onFontType(this.value)" class="font-type">
+                        <option value="Impact">impact</option>
+                        <option value="Ariel">ariel</option>
+                        <option value="Cambria">cambria</option>
+                        <option value="Times">times</option>
                     </select>
                     <button onclick="underLine()" class="controls-btn underline">und</button>
                     <input type="color" value="#ffffff" onchange="onColorChange(this.value)" class="controls-btn text-color">
@@ -57,7 +60,6 @@
     </section>
 
     <script src="js/services/storage.service.js"></script>
-
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
