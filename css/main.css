@@ -48,16 +48,15 @@ nav {
 
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 1%;
-    /* background-color: wheat; */
     height: 80vh;
 }
 
 .gallery-img {
     border: 1px solid white;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 .gallery-img:hover {
@@ -141,5 +140,10 @@ nav {
 @media screen and (min-width:500px) {
     .gallery-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .gallery-img {
+        border: 1px solid white;
+        width: 200px;
+        height: 200px;
     }
 }
