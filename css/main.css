@@ -53,6 +53,10 @@ nav {
     height: 200px;
 }
 
+.gallery-img:hover {
+    cursor: pointer;
+}
+
 .menu a {
     color: white;
     margin-inline-end: 3em;

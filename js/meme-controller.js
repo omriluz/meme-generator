@@ -8,7 +8,7 @@ renderMeme()
 
 function renderMeme() {
     let meme = getMeme()
-    console.log('meme', meme);
+        // console.log('meme', meme);
     let exampleText = 'insert text here'
 
     // takes meme chosen and displays on controller
