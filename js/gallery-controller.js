@@ -26,7 +26,7 @@ function renderGallery(el) {
 }
 
 function onImgSelect(id) {
-    let galleryViewEl = document.querySelector('.image-gallery')
+    const galleryViewEl = document.querySelector('.image-gallery')
     galleryViewEl.style.display = 'none'
 
     setImg(id)

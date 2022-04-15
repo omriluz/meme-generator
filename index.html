@@ -22,7 +22,7 @@
 
 
     <section class="image-gallery">
-        <input type="text" placeholder="Search..">
+        <input class="search-bar" type="text" placeholder="Search..">
         <div class="gallery-container">
         </div>
     </section>
@@ -46,8 +46,8 @@
                     <button onclick="onAlignText('left')" class="controls-btn text-align-left">lef</button>
                     <button onclick="onAlignText('center')" class="controls-btn text-align-center">cen</button>
                     <button onclick="onAlignText('right')" class="controls-btn text-align-right">rig</button>
-                    <button onclick="onDrag(-3)" class="controls-btn drag-up">up</button>
-                    <button onclick="onDrag(3)" class="controls-btn drag-down">down</button>
+                    <button onclick="onDrag(-10)" class="controls-btn drag-up">up</button>
+                    <button onclick="onDrag(10)" class="controls-btn drag-down">down</button>
                     <select onchange="onFontType(this.value)" class="font-type">
                         <option value="Impact">impact</option>
                         <option value="Ariel">ariel</option>
@@ -56,12 +56,18 @@
                     </select>
                     <button onclick="underLine()" class="controls-btn underline">und</button>
                     <input type="color" value="#ffffff" onchange="onColorChange(this.value)" class="controls-btn text-color">
+
+                    <button class="download-btn">
+                        <a onclick="onDownload(this)" class="download-link" href="">Download</a>
+                    </button>
+                    <button onclick="onShare()" class="share-btn">Share</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/share-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>

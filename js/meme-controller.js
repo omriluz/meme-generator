@@ -1,14 +1,16 @@
 'use strict'
 
-let gElCanvas = document.querySelector('canvas')
-let gCtx = gElCanvas.getContext('2d')
+let gElCanvas
+let gCtx
 
 let firstText;
 let secondText;
 let meme = getMeme()
 
 function initMemeEditor() {
-    // resizeCanvas()
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
+        // resizeCanvas()
     document.querySelector('body').style.backgroundColor = '#21252b'
     document.querySelector('.meme-editor').style.display = 'block'
     renderMeme()
@@ -17,17 +19,8 @@ function initMemeEditor() {
 
 function renderMeme() {
     let memeImage = getSelectedMemeImg()
-    firstText = meme.lines[0].txt
-    secondText = meme.lines[1].txt
-    renderText(firstText, gElCanvas.width / 2,
-        gElCanvas.height / 8, meme.lines[0].color,
-        meme.lines[0].size)
-
-    renderText(secondText, gElCanvas.width / 2,
-        gElCanvas.height / 1.05, meme.lines[1].color,
-        meme.lines[1].size)
-
     let img = new Image();
+
     img.src = memeImage;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -40,19 +33,24 @@ function renderMeme() {
 
 function onSwitchLine() {
     switchLine()
-    document.querySelector('.user-text-box').value = meme.lines[meme.selectedLineIdx].txt
-    document.querySelector('.text-color').value = meme.lines[meme.selectedLineIdx].color
+    let line = meme.lines[meme.selectedLineIdx]
+    if (!line) return
+    let textboxEl = document.querySelector('.user-text-box')
+
+    // if primary text use placeholder and not the present text
+    line.txt === 'insert text here' ?
+        textboxEl.value = '' : textboxEl.value = line.txt
+    textboxEl.focus()
+
+    document.querySelector('.text-color').value = line.color
+
 }
 
 function onNewText(text) {
+    if (!meme.lines.length) onAddLine()
     setLineTxt(text)
     renderMeme()
 }
-
-function onAddLine() {
-
-}
-
 
 function renderText(txt, x, y, color, size) {
     gCtx.textAlign = meme.textAlignment;
@@ -88,9 +86,11 @@ function onDeleteLine() {
     deleteText()
     renderMeme()
     deleteLine()
+    onSwitchLine()
 }
 
 function onAddLine() {
+    if (meme.lines.length === 1) onSwitchLine()
     addLine()
     renderMeme()
 }
@@ -98,4 +98,14 @@ function onAddLine() {
 function onDrag(val) {
     dragText(val)
     renderMeme()
+}
+
+function onDownload(el) {
+    const data = gElCanvas.toDataURL()
+    el.href = data
+    el.download = 'meme.jpg'
+}
+
+function onShare() {
+    uploadImg()
 }
