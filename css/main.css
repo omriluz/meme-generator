@@ -47,6 +47,9 @@ nav {
 }
 
 .search-bar {
+    padding-left: 30px;
+    font-family: poppins;
+    color: white;
     background-color: #22252c;
     border-radius: 28px;
     margin: 20px;
@@ -131,6 +134,11 @@ nav {
     border-radius: 28px;
     background-color: #ebeef3;
     box-shadow: 0px 4px rgb(187, 183, 183);
+}
+
+.download-link {
+    text-decoration: none;
+    color: black;
 }
 
 .text-styling {
