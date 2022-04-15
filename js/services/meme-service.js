@@ -11,6 +11,7 @@ let gMeme = {
             size: 50,
             align: 'left',
             color: '#ffffff',
+            strokeColor: '#000000',
             width: 170,
             height: 70
         },
@@ -19,6 +20,7 @@ let gMeme = {
             size: 50,
             align: 'left',
             color: '#ffffff',
+            strokeColor: '#000000',
             width: 170,
             height: 370
         }
@@ -37,6 +39,7 @@ function getSelectedMemeImg() {
 
 
 function setImg(memeId) {
+    // what the fuckkkkkkkkkkkkkkkkkkkkkk how is this working check it ASAP
     let photo = gPhotos.find(photo => photo.id === +memeId)
     gMeme.selectedImgId = +memeId
 }
@@ -52,6 +55,11 @@ function setLineTxt(text) {
 
 function changeTextColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
+function changeStrokeColor(color) {
+    console.log(color);
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }
 
 function handleFontSize(val) {

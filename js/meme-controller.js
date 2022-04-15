@@ -25,7 +25,7 @@ function renderMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         meme.lines.forEach(line => {
-            renderText(line.txt, line.width, line.height, line.color, line.size)
+            renderText(line.txt, line.width, line.height, line.color, line.strokeColor, line.size)
         })
     }
 }
@@ -52,18 +52,23 @@ function onNewText(text) {
     renderMeme()
 }
 
-function renderText(txt, x, y, color, size) {
+function renderText(txt, x, y, color, strokeColor, size) {
     gCtx.textAlign = meme.textAlignment;
     gCtx.lineWidth = 2;
     gCtx.fillStyle = color
     gCtx.font = `${size}px ${meme.font}`;
     gCtx.fillText(txt, x, y);
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = strokeColor;
     gCtx.strokeText(txt, x, y);
 }
 
 function onColorChange(color) {
     changeTextColor(color)
+    renderMeme()
+}
+
+function onStrokeChange(color) {
+    changeStrokeColor(color)
     renderMeme()
 }
 

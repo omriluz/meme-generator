@@ -71,12 +71,11 @@
                         <option value="Cambria">cambria</option>
                         <option value="Times">times</option>
                     </select>
-                    <input type="color" value="#000000" onclick="onStrokeChange()" class="controls-btn stroke-color">
+                    <input type="color" value="#000000" onchange="onStrokeChange(this.value)" class="controls-btn stroke-color">
                     <input type="color" value="#ffffff" onchange="onColorChange(this.value)" class="controls-btn text-color">
 
                 </div>
                 <div class="export-container">
-
                     <button class="download-btn">
                         <a onclick="onDownload(this)" class="download-link" href="">Download</a>
                     </button>
