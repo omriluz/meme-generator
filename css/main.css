@@ -136,6 +136,7 @@ nav {
     background-image: linear-gradient(to right, #0b97b9, #33bd6d);
     border-radius: 28px;
     width: 10%;
+    text-align: center;
     height: 28px;
     color: white
 }
