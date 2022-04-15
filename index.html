@@ -41,32 +41,48 @@
             <div class="user-controls">
                 <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">
-                    <button onclick="onSwitchLine()" class="controls-btn switch-line-btn"><i class="fa-solid fa-repeat"></i></button>
-                    <button onclick="onAddLine()" class="controls-btn add-line-btn"><i class="fa-solid fa-plus"></i></button>
-                    <button onclick="onDeleteLine()" class="controls-btn delete-btn"><i class="fa-solid fa-trash-can"></i></button>
+                    <button onclick="onSwitchLine()" class="controls-btn switch-line-btn"><i
+                            class="fa-solid fa-repeat"></i></button>
+                    <button onclick="onAddLine()" class="controls-btn add-line-btn"><i
+                            class="fa-solid fa-plus"></i></button>
+                    <button onclick="onDeleteLine()" class="controls-btn delete-btn"><i
+                            class="fa-solid fa-trash-can"></i></button>
                 </div>
                 <div class="text-styling">
-                    <button onclick="onHandleFontSize(1)" class="controls-btn font-bigger">A+</button>
-                    <button onclick="onHandleFontSize(-1)" class="controls-btn font-smaller">A-</button>
-                    <button onclick="onAlignText('left')" class="controls-btn text-align-left">lef</button>
-                    <button onclick="onAlignText('center')" class="controls-btn text-align-center">cen</button>
-                    <button onclick="onAlignText('right')" class="controls-btn text-align-right">rig</button>
-                    <button onclick="onDrag(-10)" class="controls-btn drag-up"><i class="fa-solid fa-up-long"></i></button>
-                    <button onclick="onDrag(10)" class="controls-btn drag-down"><i class="fa-solid fa-down-long"></i></button>
+                    <div class="grid-helper">
+                        <button onclick="onHandleFontSize(1)" class="controls-btn font-bigger"><i
+                            class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button onclick="onHandleFontSize(-1)" class="controls-btn font-smaller"><i
+                            class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button onclick="onAlignText('left')" class="controls-btn text-align-left"><i
+                            class="fa-solid fa-align-left"></i></button>
+                    </div>
+                    <button onclick="onAlignText('center')" class="controls-btn text-align-center"><i
+                            class="fa-solid fa-align-center"></i></button>
+                    <button onclick="onAlignText('right')" class="controls-btn text-align-right"><i
+                            class="fa-solid fa-align-right"></i></button>
+                    <!-- <button onclick="onDrag(-10)" class="controls-btn drag-up"><i
+                            class="fa-solid fa-up-long"></i></button>
+                    <button onclick="onDrag(10)" class="controls-btn drag-down"><i
+                            class="fa-solid fa-down-long"></i></button> -->
                     <select onchange="onFontType(this.value)" class="font-type">
                         <option value="Impact">impact</option>
                         <option value="Ariel">ariel</option>
                         <option value="Cambria">cambria</option>
                         <option value="Times">times</option>
                     </select>
-                    <button onclick="underLine()" class="controls-btn underline">und</button>
+                    <input type="color" value="#000000" onclick="onStrokeChange()" class="controls-btn stroke-color">
                     <input type="color" value="#ffffff" onchange="onColorChange(this.value)" class="controls-btn text-color">
+
+                </div>
+                <div class="export-container">
 
                     <button class="download-btn">
                         <a onclick="onDownload(this)" class="download-link" href="">Download</a>
                     </button>
                     <button onclick="onShare()" class="share-btn">Share</button>
                 </div>
+
             </div>
         </div>
     </section>

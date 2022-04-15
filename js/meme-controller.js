@@ -109,3 +109,7 @@ function onDownload(el) {
 function onShare() {
     uploadImg()
 }
+
+function openColorPalette() {
+    document.querySelector('.text-color').click()
+}
