@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
+
+    <title>Meme Generator</title>
+    <script src="https://kit.fontawesome.com/721c511360.js" crossorigin="anonymous"></script>
 </head>
 
 <body onload="onInit()">
@@ -20,17 +22,16 @@
         </nav>
     </header>
 
-    <div class="example-try">
-        <section class="image-gallery">
-            <div class="util-container">
-                <input class="search-bar" type="text" placeholder="Search">
-                <div class="keywords-container"></div>
-                <button class="more-btn">More</button>
-            </div>
-            <div class="gallery-container">
-            </div>
-        </section>
-    </div>
+    <section class="image-gallery">
+        <div class="util-container">
+            <input class="search-bar" type="text" placeholder="Search">
+            <div class="keywords-container"></div>
+            <button class="more-btn">More</button>
+        </div>
+        <div class="gallery-container">
+        </div>
+    </section>
+
 
     <section hidden class="meme-editor">
         <div class="editor-container">
@@ -40,9 +41,9 @@
             <div class="user-controls">
                 <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">
-                    <button onclick="onSwitchLine()" class="controls-btn switch-lines-btn">sw</button>
-                    <button onclick="onAddLine()" class="controls-btn add-line-btn">ad</button>
-                    <button onclick="onDeleteLine()" class="controls-btn delete-btn">del</button>
+                    <button onclick="onSwitchLine()" class="controls-btn switch-line-btn"><i class="fa-solid fa-repeat"></i></button>
+                    <button onclick="onAddLine()" class="controls-btn add-line-btn"><i class="fa-solid fa-plus"></i></button>
+                    <button onclick="onDeleteLine()" class="controls-btn delete-btn"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
                 <div class="text-styling">
                     <button onclick="onHandleFontSize(1)" class="controls-btn font-bigger">A+</button>
@@ -50,8 +51,8 @@
                     <button onclick="onAlignText('left')" class="controls-btn text-align-left">lef</button>
                     <button onclick="onAlignText('center')" class="controls-btn text-align-center">cen</button>
                     <button onclick="onAlignText('right')" class="controls-btn text-align-right">rig</button>
-                    <button onclick="onDrag(-10)" class="controls-btn drag-up">up</button>
-                    <button onclick="onDrag(10)" class="controls-btn drag-down">down</button>
+                    <button onclick="onDrag(-10)" class="controls-btn drag-up"><i class="fa-solid fa-up-long"></i></button>
+                    <button onclick="onDrag(10)" class="controls-btn drag-down"><i class="fa-solid fa-down-long"></i></button>
                     <select onchange="onFontType(this.value)" class="font-type">
                         <option value="Impact">impact</option>
                         <option value="Ariel">ariel</option>

@@ -10,8 +10,8 @@ function renderGallery(el) {
     if (el) {
         document.querySelector('.image-gallery').style.display = 'block';
         document.querySelector('.meme-editor').style.display = 'none'
-        document.querySelector('body').style.backgroundColor = '#383b42'
     }
+    document.querySelector('body').style.backgroundColor = '#383b42'
 
     // take photos from folder and present them in the client
     let galleryEl = document.querySelector('.gallery-container')
@@ -31,4 +31,10 @@ function onImgSelect(id) {
 
     setImg(id)
     initMemeEditor()
+}
+
+function onDownload(el) {
+    const data = gElCanvas.toDataURL()
+    el.href = data
+    el.download = 'meme.jpg'
 }

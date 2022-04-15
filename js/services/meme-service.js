@@ -67,9 +67,7 @@ function changeAlignment(val) {
 }
 
 function deleteText() {
-    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
     gMeme.lines[gMeme.selectedLineIdx].txt = ''
-    console.log(gMeme.lines[gMeme.selectedLineIdx].txt);
 }
 
 function deleteLine() {
