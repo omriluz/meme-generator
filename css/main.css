@@ -1,3 +1,62 @@
+/* ::-webkit-scrollbar {
+    width: 1vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #22252c;
+    border-radius: 100vw;
+    margin-top: 25vh;
+    margin-bottom: 2vh;
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #0b97b9, #33bd6d);
+    border-radius: 100vw;
+} */
+
+
+/* delete from here */
+
+html {
+    overflow: auto;
+}
+
+body {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 5px;
+    right: 20px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    background: transparent;
+    width: 1vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #22252c;
+    border-radius: 100vw;
+    margin-top: 25vh;
+    margin-bottom: 2vh;
+}
+
+::-webkit-scrollbar-thumb {
+    /* background: rgba(0, 0, 0, 0.4); */
+    /*-- black at 40% opacity --*/
+    background-image: linear-gradient(to right, #0b97b9, #33bd6d);
+    border-radius: 100vw;
+}
+
+
+/* to here */
+
+html {
+    scroll-behavior: smooth;
+}
+
 @font-face {
     font-family: poppins;
     src: url(../fonts/Poppins-Medium.ttf);
@@ -46,6 +105,12 @@ nav {
     text-decoration: none;
 }
 
+.util-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .search-bar {
     padding-left: 30px;
     font-family: poppins;
@@ -53,14 +118,32 @@ nav {
     background-color: #22252c;
     border-radius: 28px;
     margin: 20px;
-    width: 400px;
+    width: 30%;
     height: 28px;
+}
+
+.keywords-container {
+    border-radius: 28px;
+    width: 50%;
+    height: 28px;
+    background-color: gray;
+    filter: drop-shadow(0px 3px 3.5px rgba(0, 0, 0, 0.15));
+}
+
+.more-btn {
+    all: unset;
+    font-family: poppins;
+    background-image: linear-gradient(to right, #0b97b9, #33bd6d);
+    border-radius: 28px;
+    width: 10%;
+    height: 28px;
+    color: white
 }
 
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1%;
+    gap: 2%;
     height: 80vh;
 }
 
