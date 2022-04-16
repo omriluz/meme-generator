@@ -25,7 +25,14 @@
     <section class="image-gallery">
         <div class="util-container">
             <input class="search-bar" type="text" placeholder="Search">
-            <div class="keywords-container"></div>
+            <div class="keywords-container">
+                <button style="font-size: 2vw;" class="kaki" onclick="onFilterByKeyword(this)">Funny</button>
+                <button style="font-size: 2vw;" onclick="onFilterByKeyword(this)">Animal</button>
+                <button style="font-size: 2vw;" onclick="onFilterByKeyword(this)">Man</button>
+                <button style="font-size: 2vw;" onclick="onFilterByKeyword(this)">Woman</button>
+                <button style="font-size: 2vw;" onclick="onFilterByKeyword(this)">Comic</button>
+                <button style="font-size: 2vw;" onclick="onFilterByKeyword(this)">Smile</button>
+            </div>
             <button class="more-btn">More</button>
         </div>
         <div class="gallery-container">
@@ -35,9 +42,7 @@
 
     <section hidden class="meme-editor">
         <div class="editor-container">
-            <div class="canvas-container">
-                <canvas class="meme-canvas" width="340" height="390"></canvas>
-            </div>
+            <canvas class="meme-canvas" width="340" height="390"></canvas>
             <div class="user-controls">
                 <input type="text" class="user-text-box" placeholder="insert text here" onkeyup="onNewText(this.value)">
                 <div class="button-container">

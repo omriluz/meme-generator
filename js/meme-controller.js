@@ -3,10 +3,8 @@
 let gElCanvas
 let gCtx
 let gStartPos
-let gIsExporting = false
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
-let meme = getMeme()
 
 function initMemeEditor() {
     gElCanvas = document.querySelector('canvas')
@@ -31,23 +29,12 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 
-// try
-function resizeCanvas() {
-    let targetW = (window.innerWidth < 980) ? window.innerWidth * 0.6 : window.innerWidth * 0.4
-    let width = Math.max(270, targetW)
-    gCanvas.width = width
-    gCanvas.height = gCanvas.width;
-    // gCanvas.height = elContainer.offsetHeight
-}
-
 function onUp() {
-    console.log('up');
     isLineDrag(false)
     document.body.style.cursor = 'default'
 }
 
 function onDown(ev) {
-    console.log('down');
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) return
     isLineDrag(true)
@@ -56,29 +43,30 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
-    console.log('move');
-    const currLine = meme.lines[meme.selectedLineIdx]
-    if (!currLine.isDrag) return
+    let line = getSelectedLine()
+    if (!line.isDrag) return
     const pos = getEvPos(ev)
-    console.log(pos);
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy)
     gStartPos = pos
     renderMeme()
-
 }
 
 function renderMeme() {
-    let memeImage = getSelectedMemeImg()
-    let img = new Image();
+    const memeImage = getSelectedMemeImg()
+    const img = new Image();
+    const meme = getMeme()
+    const selectedLine = getSelectedLine()
 
     img.src = memeImage;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         meme.lines.forEach(line => {
             renderText(line.txt, line.width, line.height, line.color, line.strokeColor, line.size)
-            renderRect()
+            if (selectedLine === line) {
+                renderRect()
+            }
         })
     }
 }
@@ -86,7 +74,8 @@ function renderMeme() {
 
 function onSwitchLine() {
     switchLine()
-    let line = meme.lines[meme.selectedLineIdx]
+    let line = getSelectedLine()
+
     let textboxEl = document.querySelector('.user-text-box')
     if (!line) {
         // if no lines delete the text in textbox
@@ -103,18 +92,20 @@ function onSwitchLine() {
 
     document.querySelector('.text-color').value = line.color
 
-    renderRect()
     renderMeme()
 
 }
 
 function onNewText(text) {
+    const meme = getMeme()
     if (!meme.lines.length) onAddLine()
     setLineTxt(text)
     renderMeme()
 }
 
 function renderText(txt, x, y, color, strokeColor, size) {
+    let meme = getMeme()
+
     // BUGFIX:when no lines present and added back the strokeColor changes
     if (!strokeColor) strokeColor = '#000000';
 
@@ -160,19 +151,33 @@ function onDeleteLine() {
 }
 
 function onAddLine() {
+    const meme = getMeme()
     if (meme.lines.length === 1) onSwitchLine()
     addLine()
     renderMeme()
 }
 
+function reloadImgNoRect() {
+    const memeImage = getSelectedMemeImg()
+    const img = new Image();
+    const meme = getMeme()
+    img.src = memeImage;
+
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    meme.lines.forEach(line => {
+        renderText(line.txt, line.width, line.height, line.color, line.strokeColor, line.size)
+    })
+}
+
 function onDownload(el) {
+    reloadImgNoRect()
     const data = gElCanvas.toDataURL()
     el.href = data
     el.download = 'meme.jpg'
 }
 
-
 function onShare() {
+    reloadImgNoRect()
     uploadImg()
 }
 
@@ -193,12 +198,15 @@ function getEvPos(ev) {
 }
 
 function renderRect() {
-    if (!meme.lines[meme.selectedLineIdx].txt) return
-        // fix this function!! make it look nice and inviting
-    var textStartX = meme.lines[meme.selectedLineIdx].width - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width / 2
-    var textEndX = gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width
-    var textStartY = meme.lines[meme.selectedLineIdx].height - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).actualBoundingBoxAscent
-    var textEndY = meme.lines[meme.selectedLineIdx].height - textStartY
+    // debugger
+    // use size here so that when font size is smaller the rect becomes smaller
+    const line = getSelectedLine()
+    if (!line.txt) return
+    gCtx.font = `${line.size}, ${line.font}`
+    let textStartX = line.width - gCtx.measureText(line.txt).width / 2
+    let textEndX = gCtx.measureText(line.txt).width
+    let textStartY = line.height - gCtx.measureText(line.txt).actualBoundingBoxAscent
+    let textEndY = line.height - textStartY
     gCtx.beginPath();
     gCtx.rect(textStartX - 4, textStartY - 4, textEndX + 10, textEndY + 10);
     gCtx.strokeStyle = 'red';

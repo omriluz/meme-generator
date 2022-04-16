@@ -39,10 +39,8 @@ function getSelectedMemeImg() {
     return photo.img
 }
 
-
-function setImg(memeId) {
-    let photo = gPhotos.find(photo => photo.id === +memeId)
-    gMeme.selectedImgId = +memeId
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
 
 function switchLine() {

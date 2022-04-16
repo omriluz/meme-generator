@@ -19,6 +19,7 @@ function renderGallery(el) {
     let strsHTML = ''
 
     photos.map(photo => {
+
         strsHTML += `<img id=${photo.id} onclick="onImgSelect(this.id)" class="gallery-img" src="${photo.img}">`
     })
 
@@ -33,8 +34,13 @@ function onImgSelect(id) {
     initMemeEditor()
 }
 
-function onDownload(el) {
-    const data = gElCanvas.toDataURL()
-    el.href = data
-    el.download = 'meme.jpg'
+function onFilterByKeyword(el) {
+    const fontSize = el.style.fontSize
+    let fontNum = +fontSize.match(/\d+\.?\d*/g)[0]
+    if (fontNum < 3.8) {
+        fontNum += 0.2
+        el.style.fontSize = fontNum + 'vw'
+    }
+    filterByKeyword(el.innerHTML.toLowerCase())
+    renderGallery()
 }

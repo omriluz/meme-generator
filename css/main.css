@@ -29,6 +29,7 @@ nav {
     height: 100px;
     object-fit: contain;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu {
@@ -70,9 +71,21 @@ nav {
 .keywords-container {
     border-radius: 28px;
     width: 50%;
-    height: 28px;
+    height: 38px;
     background-color: gray;
     filter: drop-shadow(0px 3px 3.5px rgba(0, 0, 0, 0.15));
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.keywords-container>* {
+    all: unset;
+    color: white;
+}
+
+.keywords-container>*:hover {
+    cursor: pointer;
 }
 
 .more-btn {
@@ -80,7 +93,8 @@ nav {
     font-family: poppins;
     background-image: linear-gradient(to right, #0b97b9, #33bd6d);
     border-radius: 28px;
-    width: 10%;
+    width: 15vw;
+    margin-left: 2vw;
     text-align: center;
     height: 28px;
     color: white
@@ -136,7 +150,8 @@ nav {
 .meme-canvas {
     border-radius: 25px;
     background-color: white;
-    margin-top: 50vh;
+    position: relative;
+    top: 64%;
 }
 
 .user-controls {
@@ -149,6 +164,8 @@ nav {
     justify-content: flex-start;
     align-items: center;
     gap: 30px;
+    position: relative;
+    top: 56%;
 }
 
 .user-text-box {
@@ -262,9 +279,10 @@ nav {
         margin-left: unset;
     }
     .meme-canvas {
-        border-radius: 25px;
-        background-color: white;
-        margin-top: unset;
+        top: 0;
+    }
+    .user-controls {
+        top: 0%;
     }
     /* expiremental handle later */
     html {
