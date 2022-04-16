@@ -61,10 +61,6 @@
                             class="fa-solid fa-align-center"></i></button>
                     <button onclick="onAlignText('right')" class="controls-btn text-align-right"><i
                             class="fa-solid fa-align-right"></i></button>
-                    <!-- <button onclick="onDrag(-10)" class="controls-btn drag-up"><i
-                            class="fa-solid fa-up-long"></i></button>
-                    <button onclick="onDrag(10)" class="controls-btn drag-down"><i
-                            class="fa-solid fa-down-long"></i></button> -->
                     <select onchange="onFontType(this.value)" class="font-type">
                         <option value="Impact">impact</option>
                         <option value="Ariel">ariel</option>
@@ -76,10 +72,10 @@
 
                 </div>
                 <div class="export-container">
-                    <button class="download-btn">
-                        <a onclick="onDownload(this)" class="download-link" href="">Download</a>
+                    <button onclick="onShare()" class="export-btn share-btn"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                    <button class="export-btn download-btn">
+                        <a onclick="onDownload(this)" class="download-link" href=""><i class="fa-solid fa-download"></i> Download</a>
                     </button>
-                    <button onclick="onShare()" class="share-btn">Share</button>
                 </div>
 
             </div>

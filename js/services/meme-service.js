@@ -13,7 +13,8 @@ let gMeme = {
             color: '#ffffff',
             strokeColor: '#000000',
             width: 170,
-            height: 70
+            height: 70,
+            isDrag: false
         },
         {
             txt: 'insert text here',
@@ -22,7 +23,8 @@ let gMeme = {
             color: '#ffffff',
             strokeColor: '#000000',
             width: 170,
-            height: 370
+            height: 370,
+            isDrag: false
         }
     ]
 };
@@ -39,7 +41,6 @@ function getSelectedMemeImg() {
 
 
 function setImg(memeId) {
-    // what the fuckkkkkkkkkkkkkkkkkkkkkk how is this working check it ASAP
     let photo = gPhotos.find(photo => photo.id === +memeId)
     gMeme.selectedImgId = +memeId
 }
@@ -58,7 +59,6 @@ function changeTextColor(color) {
 }
 
 function changeStrokeColor(color) {
-    console.log(color);
     gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }
 
@@ -82,17 +82,40 @@ function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
 }
 
+function isLineDrag(drag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = drag
+}
+
+function moveLine(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].width += dx
+    gMeme.lines[gMeme.selectedLineIdx].height += dy
+}
+
 function addLine() {
+    let height = 220
+    if (!gMeme.lines.length) height = 70
+    if (gMeme.lines.length === 1) height = 370
+
+
     gMeme.lines.push({
         txt: 'insert text here',
         size: 50,
         align: 'left',
         color: '#ffffff',
         width: 170,
-        height: 220
+        height,
+        isDrag: false
     })
 }
 
-function dragText(val) {
-    gMeme.lines[gMeme.selectedLineIdx].height += val
+function isLineClicked(clickedPos) {
+    const currLine = gMeme.lines[gMeme.selectedLineIdx]
+        // TODO check if this is a good line
+    const { height, width } = { height: currLine.height, width: currLine.width }
+    const distance = Math.sqrt((width - clickedPos.x) ** 2 + (height - clickedPos.y) ** 2)
+
+    // TODO: needs to change as it doesnt really grab the element at the place
+    // where he is situated
+    return distance <= currLine.size
+
 }

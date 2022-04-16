@@ -2,6 +2,8 @@
 
 let gElCanvas
 let gCtx
+let gStartPos
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 let firstText;
 let secondText;
@@ -11,11 +13,51 @@ function initMemeEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
         // resizeCanvas()
+    addMouseListeners()
     document.querySelector('body').style.backgroundColor = '#21252b'
     document.querySelector('.meme-editor').style.display = 'block'
     renderMeme()
 }
 
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+// try
+function resizeCanvas() {
+    let targetW = (window.innerWidth < 980) ? window.innerWidth * 0.6 : window.innerWidth * 0.4
+    let width = Math.max(270, targetW)
+    gCanvas.width = width
+    gCanvas.height = gCanvas.width;
+    // gCanvas.height = elContainer.offsetHeight
+}
+
+function onUp() {
+    isLineDrag(false)
+    document.body.style.cursor = 'default'
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    if (!isLineClicked(pos)) return
+    isLineDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const currLine = meme.lines[meme.selectedLineIdx]
+    if (!currLine.isDrag) return
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy)
+    gStartPos = pos
+    renderMeme()
+
+}
 
 function renderMeme() {
     let memeImage = getSelectedMemeImg()
@@ -40,7 +82,10 @@ function onSwitchLine() {
     // if primary text use placeholder and not the present text
     line.txt === 'insert text here' ?
         textboxEl.value = '' : textboxEl.value = line.txt
-    textboxEl.focus()
+
+    // prevents virtual keyboard opening on mobile as it hurts UX 
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) textboxEl.focus()
+
 
     document.querySelector('.text-color').value = line.color
 
@@ -100,11 +145,6 @@ function onAddLine() {
     renderMeme()
 }
 
-function onDrag(val) {
-    dragText(val)
-    renderMeme()
-}
-
 function onDownload(el) {
     const data = gElCanvas.toDataURL()
     el.href = data
@@ -117,4 +157,20 @@ function onShare() {
 
 function openColorPalette() {
     document.querySelector('.text-color').click()
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft,
+            y: ev.pageY - ev.target.offsetTop
+        }
+    }
+    return pos
 }
