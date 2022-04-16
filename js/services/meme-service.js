@@ -108,13 +108,22 @@ function addLine() {
 }
 
 function isLineClicked(clickedPos) {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-        // TODO check if this is a good line
-    const { height, width } = { height: currLine.height, width: currLine.width }
+    const line = getSelectedLine()
+    const { height, width } = { height: line.height, width: line.width }
     const distance = Math.sqrt((width - clickedPos.x) ** 2 + (height - clickedPos.y) ** 2)
 
-    // TODO: needs to change as it doesnt really grab the element at the place
-    // where he is situated
-    return distance <= currLine.size
+    return distance <= line.size
+}
 
+function checkLineClicked(clickedPos) {
+    const lines = gMeme.lines
+    lines.map((line, index) => {
+        const { height, width } = { height: line.height, width: line.width }
+        const distance = Math.sqrt((width - clickedPos.x) ** 2 + (height - clickedPos.y) ** 2)
+
+        if (distance <= line.size) {
+            if (index != gMeme.selectedLineIdx)
+                gMeme.selectedLineIdx = index
+        }
+    })
 }

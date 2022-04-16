@@ -23,8 +23,6 @@ const gPhotos = [
 ]
 
 
-let gImgChosen;
-
 function getPhotos() {
     if (gFilter) {
         let filteredPhotos = []

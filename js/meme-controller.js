@@ -36,6 +36,7 @@ function onUp() {
 
 function onDown(ev) {
     const pos = getEvPos(ev)
+    checkLineClicked(pos)
     if (!isLineClicked(pos)) return
     isLineDrag(true)
     gStartPos = pos
@@ -43,7 +44,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
-    let line = getSelectedLine()
+    const line = getSelectedLine()
     if (!line.isDrag) return
     const pos = getEvPos(ev)
     const dx = pos.x - gStartPos.x
@@ -74,9 +75,9 @@ function renderMeme() {
 
 function onSwitchLine() {
     switchLine()
-    let line = getSelectedLine()
+    const line = getSelectedLine()
 
-    let textboxEl = document.querySelector('.user-text-box')
+    const textboxEl = document.querySelector('.user-text-box')
     if (!line) {
         // if no lines delete the text in textbox
         textboxEl.value = ''
@@ -104,7 +105,7 @@ function onNewText(text) {
 }
 
 function renderText(txt, x, y, color, strokeColor, size) {
-    let meme = getMeme()
+    const meme = getMeme()
 
     // BUGFIX:when no lines present and added back the strokeColor changes
     if (!strokeColor) strokeColor = '#000000';
@@ -182,7 +183,7 @@ function onShare() {
 }
 
 function getEvPos(ev) {
-    var pos = {
+    let pos = {
         x: ev.offsetX,
         y: ev.offsetY
     }
@@ -198,15 +199,13 @@ function getEvPos(ev) {
 }
 
 function renderRect() {
-    // debugger
-    // use size here so that when font size is smaller the rect becomes smaller
     const line = getSelectedLine()
     if (!line.txt) return
-    gCtx.font = `${line.size}, ${line.font}`
-    let textStartX = line.width - gCtx.measureText(line.txt).width / 2
-    let textEndX = gCtx.measureText(line.txt).width
-    let textStartY = line.height - gCtx.measureText(line.txt).actualBoundingBoxAscent
-    let textEndY = line.height - textStartY
+    const textStartX = line.width - gCtx.measureText(line.txt).width / 2
+    const textEndX = gCtx.measureText(line.txt).width
+    const textStartY = line.height - gCtx.measureText(line.txt).actualBoundingBoxAscent
+    const textEndY = line.height - textStartY
+
     gCtx.beginPath();
     gCtx.rect(textStartX - 4, textStartY - 4, textEndX + 10, textEndY + 10);
     gCtx.strokeStyle = 'red';
