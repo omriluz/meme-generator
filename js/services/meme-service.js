@@ -75,6 +75,7 @@ function changeAlignment(val) {
 }
 
 function deleteText() {
+    if (!gMeme.lines.length) return
     gMeme.lines[gMeme.selectedLineIdx].txt = ''
 }
 

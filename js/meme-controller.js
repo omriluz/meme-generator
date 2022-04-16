@@ -3,16 +3,17 @@
 let gElCanvas
 let gCtx
 let gStartPos
+let gIsExporting = false
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 let meme = getMeme()
-
 
 function initMemeEditor() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
         // resizeCanvas()
     addMouseListeners()
+    addTouchListeners()
     document.querySelector('body').style.backgroundColor = '#21252b'
     document.querySelector('.meme-editor').style.display = 'block'
     renderMeme()
@@ -22,6 +23,12 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 // try
@@ -34,11 +41,13 @@ function resizeCanvas() {
 }
 
 function onUp() {
+    console.log('up');
     isLineDrag(false)
     document.body.style.cursor = 'default'
 }
 
 function onDown(ev) {
+    console.log('down');
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) return
     isLineDrag(true)
@@ -47,6 +56,7 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+    console.log('move');
     const currLine = meme.lines[meme.selectedLineIdx]
     if (!currLine.isDrag) return
     const pos = getEvPos(ev)
@@ -105,6 +115,9 @@ function onNewText(text) {
 }
 
 function renderText(txt, x, y, color, strokeColor, size) {
+    // BUGFIX:when no lines present and added back the strokeColor changes
+    if (!strokeColor) strokeColor = '#000000';
+
     gCtx.textAlign = meme.textAlignment;
     gCtx.lineWidth = 2;
     gCtx.fillStyle = color
@@ -158,12 +171,9 @@ function onDownload(el) {
     el.download = 'meme.jpg'
 }
 
+
 function onShare() {
     uploadImg()
-}
-
-function openColorPalette() {
-    document.querySelector('.text-color').click()
 }
 
 function getEvPos(ev) {
@@ -183,7 +193,8 @@ function getEvPos(ev) {
 }
 
 function renderRect() {
-    // fix this function!! make it look nice and inviting
+    if (!meme.lines[meme.selectedLineIdx].txt) return
+        // fix this function!! make it look nice and inviting
     var textStartX = meme.lines[meme.selectedLineIdx].width - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width / 2
     var textEndX = gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width
     var textStartY = meme.lines[meme.selectedLineIdx].height - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).actualBoundingBoxAscent

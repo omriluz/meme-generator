@@ -59,7 +59,8 @@ nav {
     padding-left: 30px;
     font-family: poppins;
     color: white;
-    background-color: #22252c;
+    /* background-color: #22252c; */
+    background: #22252c url(../images/mg.png) no-repeat right;
     border-radius: 28px;
     margin: 20px;
     width: 30%;
