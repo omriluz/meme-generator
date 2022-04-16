@@ -5,9 +5,8 @@ let gCtx
 let gStartPos
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
-let firstText;
-let secondText;
 let meme = getMeme()
+
 
 function initMemeEditor() {
     gElCanvas = document.querySelector('canvas')
@@ -69,6 +68,7 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         meme.lines.forEach(line => {
             renderText(line.txt, line.width, line.height, line.color, line.strokeColor, line.size)
+            renderRect()
         })
     }
 }
@@ -91,8 +91,10 @@ function onSwitchLine() {
     // prevents virtual keyboard opening on mobile as it hurts UX 
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) textboxEl.focus()
 
-
     document.querySelector('.text-color').value = line.color
+
+    renderRect()
+    renderMeme()
 
 }
 
@@ -110,7 +112,6 @@ function renderText(txt, x, y, color, strokeColor, size) {
     gCtx.fillText(txt, x, y);
     gCtx.strokeStyle = strokeColor;
     gCtx.strokeText(txt, x, y);
-    renderRect()
 }
 
 function onColorChange(color) {
@@ -191,4 +192,5 @@ function renderRect() {
     gCtx.rect(textStartX - 4, textStartY - 4, textEndX + 10, textEndY + 10);
     gCtx.strokeStyle = 'red';
     gCtx.stroke();
+    gCtx.closePath()
 }
