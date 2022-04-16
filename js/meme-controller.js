@@ -175,6 +175,7 @@ function onDownload(el) {
     const data = gElCanvas.toDataURL()
     el.href = data
     el.download = 'meme.jpg'
+    renderMeme()
 }
 
 function onShare() {

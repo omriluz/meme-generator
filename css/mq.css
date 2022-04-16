@@ -1,0 +1,49 @@
+@media screen and (min-width:500px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(197px, 1fr));
+    }
+    .gallery-img {
+        width: 200px;
+        aspect-ratio: 1;
+    }
+    .editor-container {
+        flex-direction: row;
+        height: 80vh;
+    }
+    .gallery-container:nth-child(even) {
+        margin-left: unset;
+    }
+    .meme-canvas {
+        top: 0;
+    }
+    .user-controls {
+        top: 0%;
+    }
+    html {
+        overflow: auto;
+        scroll-behavior: smooth;
+    }
+    body {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        bottom: 5px;
+        right: 20px;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+     ::-webkit-scrollbar {
+        background: transparent;
+        width: 1vw;
+    }
+     ::-webkit-scrollbar-track {
+        background: #22252c;
+        border-radius: 100vw;
+        margin-top: 25vh;
+        margin-bottom: 2vh;
+    }
+     ::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(to right, #0b97b9, #33bd6d);
+        border-radius: 100vw;
+    }
+}
