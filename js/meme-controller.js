@@ -51,6 +51,7 @@ function onMove(ev) {
     const currLine = meme.lines[meme.selectedLineIdx]
     if (!currLine.isDrag) return
     const pos = getEvPos(ev)
+    console.log(pos);
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy)
@@ -76,8 +77,12 @@ function renderMeme() {
 function onSwitchLine() {
     switchLine()
     let line = meme.lines[meme.selectedLineIdx]
-    if (!line) return
     let textboxEl = document.querySelector('.user-text-box')
+    if (!line) {
+        // if no lines delete the text in textbox
+        textboxEl.value = ''
+        return
+    }
 
     // if primary text use placeholder and not the present text
     line.txt === 'insert text here' ?
@@ -105,6 +110,7 @@ function renderText(txt, x, y, color, strokeColor, size) {
     gCtx.fillText(txt, x, y);
     gCtx.strokeStyle = strokeColor;
     gCtx.strokeText(txt, x, y);
+    renderRect()
 }
 
 function onColorChange(color) {
@@ -173,4 +179,16 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function renderRect() {
+    // fix this function!! make it look nice and inviting
+    var textStartX = meme.lines[meme.selectedLineIdx].width - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width / 2
+    var textEndX = gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).width
+    var textStartY = meme.lines[meme.selectedLineIdx].height - gCtx.measureText(meme.lines[meme.selectedLineIdx].txt).actualBoundingBoxAscent
+    var textEndY = meme.lines[meme.selectedLineIdx].height - textStartY
+    gCtx.beginPath();
+    gCtx.rect(textStartX - 4, textStartY - 4, textEndX + 10, textEndY + 10);
+    gCtx.strokeStyle = 'red';
+    gCtx.stroke();
 }
